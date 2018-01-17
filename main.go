@@ -109,19 +109,60 @@ func TwoPeak(n int) *Node {
 	return c
 }
 
-var problem = TwoPeak(ProblemSize)
-
-func score(g *ga.GAFixedBitstringGenome) float64 {
-	vars := make([]int32, len(g.Gene))
-	for i, bit := range g.Gene {
-		if bit {
-			vars[i] = One
+// FalsePeak generates a false peak problem
+func FalsePeak(n int) *Node {
+	a := &Node{
+		NodeType: And,
+		Nodes:    make([]*Node, n),
+	}
+	for i := range a.Nodes {
+		a.Nodes[i] = &Node{
+			NodeType: Var,
+			A:        i,
 		}
 	}
-	return float64(One-problem.Eval(vars)) / One
+
+	b := &Node{
+		NodeType: And,
+		Nodes:    make([]*Node, n),
+	}
+	b.Nodes[0] = &Node{
+		NodeType: Var,
+		A:        0,
+	}
+	for i := 1; i < len(b.Nodes); i++ {
+		c := &Node{
+			NodeType: Not,
+			Nodes:    make([]*Node, 1),
+		}
+		c.Nodes[0] = &Node{
+			NodeType: Var,
+			A:        i,
+		}
+		b.Nodes[i] = c
+	}
+
+	c := &Node{
+		NodeType: Or,
+		Nodes:    make([]*Node, 2),
+	}
+	c.Nodes[0] = a
+	c.Nodes[1] = b
+	return c
 }
 
-func main() {
+// Optimize runs ga on a give problem
+func Optimize(problem *Node) {
+	score := func(g *ga.GAFixedBitstringGenome) float64 {
+		vars := make([]int32, len(g.Gene))
+		for i, bit := range g.Gene {
+			if bit {
+				vars[i] = One
+			}
+		}
+		return float64(One-problem.Eval(vars)) / One
+	}
+
 	m := ga.NewMultiMutator()
 	m.Add(new(ga.GAShiftMutator))
 	m.Add(new(ga.GASwitchMutator))
@@ -143,4 +184,9 @@ func main() {
 		fmt.Printf("best = %v\n", score)
 		return score < 1e-3
 	})
+}
+
+func main() {
+	Optimize(TwoPeak(ProblemSize))
+	Optimize(FalsePeak(ProblemSize))
 }

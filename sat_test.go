@@ -24,3 +24,13 @@ func TestTwoPeak(t *testing.T) {
 		t.Fatal("should be one/2", value)
 	}
 }
+
+func TestFalsePeak(t *testing.T) {
+	problem, vars := FalsePeak(8), make([]int32, 8)
+	for i := range vars {
+		vars[i] = One
+	}
+	if value := problem.Eval(vars); value != One {
+		t.Fatal("should be one", value)
+	}
+}

@@ -14,3 +14,7 @@ https://arxiv.org/abs/1408.2333
 https://online.tugraz.at/tug_online/voe_main2.getvolltext?pCurrPk=82043  
 https://www.iaik.tugraz.at/content/research/opensource/demiurge/  
 http://www.syntcomp.org/  
+
+# How to solve Hamiltonian Path using SAT solver for Undirected Graph
+https://discuss.codechef.com/questions/86568/how-to-solve-hamiltonian-path-using-sat-solver-for-undirected-graph  
+https://www.csie.ntu.edu.tw/~lyuu/complexity/2011/20111018.pdf  

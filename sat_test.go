@@ -5,7 +5,8 @@ import (
 )
 
 func TestTwoPeak(t *testing.T) {
-	problem, vars := TwoPeak(8), make([]int32, 8)
+	size, problem := TwoPeak(8)
+	vars := make([]int32, size)
 	if value := problem.Eval(vars); value != One {
 		t.Fatal("should be One", value)
 	}
@@ -26,7 +27,8 @@ func TestTwoPeak(t *testing.T) {
 }
 
 func TestFalsePeak(t *testing.T) {
-	problem, vars := FalsePeak(8), make([]int32, 8)
+	size, problem := FalsePeak(8)
+	vars := make([]int32, size)
 	for i := range vars {
 		vars[i] = One
 	}

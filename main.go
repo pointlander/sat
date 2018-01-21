@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 
 	"github.com/pointlander/go-galib"
 )
@@ -71,8 +73,43 @@ func (n *Node) Eval(vars []int32) int32 {
 	return eval(n)
 }
 
+// String generates a string for the expression
+func (n *Node) String() string {
+	var str func(n *Node) string
+	str = func(n *Node) string {
+		switch n.NodeType {
+		case NoOp:
+			panic("noop")
+		case And:
+			s := "("
+			and := ""
+			for _, node := range n.Nodes {
+				s += and + str(node)
+				and = " & "
+			}
+			return s + ")"
+		case Or:
+			s := "("
+			or := ""
+			for _, node := range n.Nodes {
+				s += or + str(node)
+				or = " | "
+			}
+			return s + ")"
+		case Not:
+			return "!" + str(n.Nodes[0])
+		case Var:
+			return fmt.Sprintf("%d", n.A)
+		default:
+			panic("invalid node class")
+		}
+	}
+
+	return str(n)
+}
+
 // TwoPeak generates a two peak problem
-func TwoPeak(n int) *Node {
+func TwoPeak(n int) (int, *Node) {
 	a := &Node{
 		NodeType: And,
 		Nodes:    make([]*Node, n),
@@ -106,11 +143,11 @@ func TwoPeak(n int) *Node {
 	}
 	c.Nodes[0] = a
 	c.Nodes[1] = b
-	return c
+	return n, c
 }
 
 // FalsePeak generates a false peak problem
-func FalsePeak(n int) *Node {
+func FalsePeak(n int) (int, *Node) {
 	a := &Node{
 		NodeType: And,
 		Nodes:    make([]*Node, n),
@@ -148,11 +185,11 @@ func FalsePeak(n int) *Node {
 	}
 	c.Nodes[0] = a
 	c.Nodes[1] = b
-	return c
+	return n, c
 }
 
 // Optimize runs ga on a give problem
-func Optimize(problem *Node) {
+func Optimize(size int, problem *Node) {
 	score := func(g *ga.GAFixedBitstringGenome) float64 {
 		vars := make([]int32, len(g.Gene))
 		for i, bit := range g.Gene {
@@ -176,17 +213,35 @@ func Optimize(problem *Node) {
 		Mutator:     m,
 	}
 
-	gao := ga.NewGA(param)
-	genome := ga.NewFixedBitstringGenome(make([]bool, ProblemSize), score)
-	gao.Init(128, genome)
-	gao.OptimizeUntil(func(best ga.GAGenome) bool {
-		score := best.Score()
-		fmt.Printf("best = %v\n", score)
-		return score < 1e-3
-	})
+	found := false
+	for !found {
+		gao := ga.NewGA(param)
+		genome := ga.NewFixedBitstringGenome(make([]bool, size), score)
+		gao.Init(128, genome)
+
+		stuck, count := 0.0, 0
+		gao.OptimizeUntil(func(best ga.GAGenome) bool {
+			score := best.Score()
+			fmt.Printf("best = %v\n", score)
+			if score == stuck {
+				count++
+			} else {
+				stuck = score
+				count = 0
+			}
+			if count > 100 {
+				return true
+			}
+
+			found = score < 1e-3
+			return found
+		})
+	}
 }
 
 func main() {
+	rand.Seed(time.Now().Unix())
 	Optimize(TwoPeak(ProblemSize))
 	Optimize(FalsePeak(ProblemSize))
+	Optimize(HamiltonianCircuit(8))
 }

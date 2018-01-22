@@ -18,3 +18,6 @@ http://www.syntcomp.org/
 # How to solve Hamiltonian Path using SAT solver for Undirected Graph
 https://discuss.codechef.com/questions/86568/how-to-solve-hamiltonian-path-using-sat-solver-for-undirected-graph  
 https://www.csie.ntu.edu.tw/~lyuu/complexity/2011/20111018.pdf  
+
+# Donald Knuth and SAT
+https://news.ycombinator.com/item?id=16199719  

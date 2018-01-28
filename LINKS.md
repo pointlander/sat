@@ -21,3 +21,10 @@ https://www.csie.ntu.edu.tw/~lyuu/complexity/2011/20111018.pdf
 
 # Donald Knuth and SAT
 https://news.ycombinator.com/item?id=16199719  
+
+# Other optimization methods
+https://news.ycombinator.com/item?id=16241659  
+https://github.com/chrisstroemel/Simple  
+https://en.wikipedia.org/wiki/CMA-ES  
+https://en.wikipedia.org/wiki/Bayesian_optimization  
+https://en.wikipedia.org/wiki/Derivative-free_optimization  

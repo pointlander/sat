@@ -31,7 +31,8 @@ func Optimize(size int, problem *Node, statistics *Statistics) {
 				vars[i] = One
 			}
 		}
-		return float64(One-problem.Eval(vars)) / One
+		s := float64(One-problem.Eval(vars)) / One
+		return s * s
 	}
 
 	m := ga.NewMultiMutator()
@@ -92,7 +93,8 @@ func OptimizeMeta(size int, problem *Node, statistics *Statistics) {
 				vars[i] = One
 			}
 		}
-		return float64(One-problem.Eval(vars)) / One
+		s := float64(One-problem.Eval(vars)) / One
+		return s * s
 	}
 
 	m := ga.NewMultiMutator()
@@ -180,7 +182,7 @@ func main() {
 		optimize func(size int, problem *Node, statistics *Statistics)) {
 		start := time.Now()
 		statistics := Statistics{}
-		for i := 0; i < 10; i++ {
+		for i := 0; i < 100; i++ {
 			size, problem := newProblem()
 			optimize(size, problem, &statistics)
 		}

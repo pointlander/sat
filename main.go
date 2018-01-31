@@ -70,7 +70,7 @@ func Optimize(size int, problem *Node, statistics *Statistics) {
 				return true
 			}
 
-			found = score < 1e-3
+			found = score < 1e-6
 			return found
 		})
 		if !found {
@@ -159,7 +159,7 @@ func OptimizeMeta(size int, problem *Node, statistics *Statistics) {
 				restarts++
 			}
 
-			found = score < 1e-3
+			found = score < 1e-6
 			return found
 		})
 		if !found {

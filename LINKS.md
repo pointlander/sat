@@ -28,3 +28,8 @@ https://github.com/chrisstroemel/Simple
 https://en.wikipedia.org/wiki/CMA-ES  
 https://en.wikipedia.org/wiki/Bayesian_optimization  
 https://en.wikipedia.org/wiki/Derivative-free_optimization  
+
+# Probability distribution
+Could be used as a mutation strategy
+
+https://arxiv.org/abs/1610.00442  

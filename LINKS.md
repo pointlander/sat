@@ -33,3 +33,6 @@ https://en.wikipedia.org/wiki/Derivative-free_optimization
 Could be used as a mutation strategy
 
 https://arxiv.org/abs/1610.00442  
+
+# Eigenvector centrality in industrial SAT instances (page rank)
+http://www7.inra.fr/mia/T/katsirelos/papers/kscp12.pdf  

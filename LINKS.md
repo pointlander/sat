@@ -40,3 +40,7 @@ http://www7.inra.fr/mia/T/katsirelos/papers/kscp12.pdf
 # In application to language
 https://blukat29.github.io/2016/01/regex-crossword-solver/  
 http://homepage.divms.uiowa.edu/~ajreynol/cav14.pdf  
+
+# Like MemComputing?
+https://news.ycombinator.com/item?id=16363980  
+https://arxiv.org/abs/1802.03685   

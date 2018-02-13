@@ -36,3 +36,7 @@ https://arxiv.org/abs/1610.00442
 
 # Eigenvector centrality in industrial SAT instances (page rank)
 http://www7.inra.fr/mia/T/katsirelos/papers/kscp12.pdf  
+
+# In application to language
+https://blukat29.github.io/2016/01/regex-crossword-solver/  
+http://homepage.divms.uiowa.edu/~ajreynol/cav14.pdf  

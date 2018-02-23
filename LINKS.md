@@ -44,3 +44,7 @@ http://homepage.divms.uiowa.edu/~ajreynol/cav14.pdf
 # Like MemComputing?
 https://news.ycombinator.com/item?id=16363980  
 https://arxiv.org/abs/1802.03685   
+
+# Use quantum computer for speed up
+http://people.ibest.uidaho.edu/~foster/Papers/40147.pdf  
+https://arxiv.org/abs/cs/0403003  
